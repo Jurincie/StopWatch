@@ -32,5 +32,51 @@ class StopWatchTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func test_MainViewModel_shouldNotBeNil () {
+        // Given
+        let mainVM = MainViewModel()
+
+        // When
+
+        // Then
+        XCTAssertNotNil(mainVM)
+    }
+    
+    func test_MainViewModel_seconds_shouldInitializeToZero () {
+        // Given
+        let mainVM = MainViewModel()
+
+        // When
+        let seconds = mainVM.seconds
+
+        // Then
+        XCTAssertEqual(seconds, 0)
+
+    }
+    
+    func test_MainViewModel_minutes_shouldInitializeToZero () {
+        // Given
+        let mainVM = MainViewModel()
+
+        // When
+        let minutes = mainVM.minutes
+
+        // Then
+        XCTAssertEqual(minutes, 0)
+
+    }
+    
+    func test_MainViewModel_hours_shouldInitializeToZero () {
+        // Given
+        let mainVM = MainViewModel()
+
+        // When
+        let hours = mainVM.hours
+
+        // Then
+        XCTAssertEqual(hours, 0)
+
+    }
 
 }

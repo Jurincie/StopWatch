@@ -67,8 +67,12 @@ struct MainView: View {
             )
 
             Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+            
             HStack() {
-                Button(mainVM.notStarted == true ? "Start" : mainVM.timerIsRunning == true ? "Pause" : "Continue") {
+                Button(mainVM.mode == .stopped ? "Start" : mainVM.mode == .running ? "Pause" : "Continue") {
                     mainVM.startPauseContinueTapped()
                 }
                 .frame(maxWidth:.infinity)
@@ -80,10 +84,8 @@ struct MainView: View {
                 )
                 .background(Color.black)
                 .foregroundColor(Color.white)
-            }
-            HStack() {
+
                 Button("Reset"){
-                    mainVM.notStarted = true
                     mainVM.resetTappped()
                 }
                 .frame(maxWidth:.infinity)
@@ -96,8 +98,9 @@ struct MainView: View {
                 .background(Color.black)
                 .foregroundColor(Color.white)
             }
+            
         }
-        .padding()
+        .padding(20)
     }
 }
 
