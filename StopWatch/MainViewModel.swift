@@ -12,9 +12,13 @@ import UIKit
 final class MainViewModel : ObservableObject {
     // All business logic contained in this MainViewModel
     // Observable Object
-    // Implemrnt: start and pause
-    // Implemrnt: continue
-    // Implemrnt: reset
+    // Implemrnt: start and pause and continue on top button
+    // Implemrnt: reset on bottom button
+    
+    // Using MVVM with this as the only ViewModel
+    // By making this class ObservableObject with:
+    //      published variables for seconds, minutes, hours and mode
+    // The MainView will reauculate itself whenever any of those values change
     
     enum stopWatchMode {
         case running
@@ -26,22 +30,26 @@ final class MainViewModel : ObservableObject {
     @Published var minutes:Int
     @Published var hours:Int
     @Published var mode: stopWatchMode = .stopped
-    
+    var secondsPassed: Int
     var timer = Timer()
     
     init() {
-        seconds = 0
-        minutes = 0
-        hours = 0
+        self.secondsPassed = 0
+        
+        self.hours = 0
+        self.minutes = 0
+        self.seconds = 0
     }
     
     func resetTappped() {
-        seconds = 0
-        minutes = 0
-        hours = 0
+        
         timer.invalidate()
+        self.secondsPassed = 0
+        self.hours = 0
+        self.minutes = 0
+        self.seconds = 0
+        
         mode = .stopped
-        print ("reset button tapped")
     }
     
     
@@ -53,23 +61,16 @@ final class MainViewModel : ObservableObject {
             
         case .stopped: fallthrough
         case .paused:
-            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                self.seconds += 1
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                self.secondsPassed += 1
                 
-                if self.seconds == 60 {
-                    self.seconds = 0
-                    self.minutes += 1
-                    
-                    if self.minutes == 60 {
-                        self.minutes = 0
-                        self.hours += 1
-                        
-                        if self.hours == 100 {
-                            self.hours = 0
-                        }
-                    }
+                if self.secondsPassed >= 360000 {
+                    self.secondsPassed = 0
                 }
                 
+                self.hours = self.secondsPassed / 3600
+                self.minutes = (self.secondsPassed - self.hours * 3600) / 60
+                self.seconds = self.secondsPassed % 60
                 self.mode = .running
             }
         }

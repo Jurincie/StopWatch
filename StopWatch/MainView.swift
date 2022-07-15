@@ -21,16 +21,25 @@ struct MainView: View {
     var body: some View {
         VStack() {
             Spacer()
+            Text("Stopwatch App")
+                .font(.title)
+                .fontWeight(.bold)
+                .frame(width:300, alignment: .center)
+            Spacer()
             HStack() {
                 Spacer()
                 Text("\(mainVM.hours / 10)")
                     .fontWeight(.bold)
                     .frame(width: 20, height:80)
                     .font(.title)
+                    .accessibilityIdentifier("hoursOne")
+                
                 Text("\(mainVM.hours % 10)")
                     .fontWeight(.bold)
                     .frame(width: 20, height:80)
                     .font(.title)
+                    .accessibilityIdentifier("hoursTwo")
+                
                 Text(":")
                     .fontWeight(.bold)
                     .frame(width: 20, height:80)
@@ -40,11 +49,13 @@ struct MainView: View {
                     .fontWeight(.bold)
                    .frame(width: 20, height:80)
                    .font(.title)
+                   .accessibilityIdentifier("minutesOne")
 
                 Text("\(mainVM.minutes % 10)")
                     .fontWeight(.bold)
                     .frame(width: 20, height:80)
                     .font(.title)
+                    .accessibilityIdentifier("minutesTwo")
                     
                 Text(":")
                     .fontWeight(.bold)
@@ -55,11 +66,13 @@ struct MainView: View {
                     .fontWeight(.bold)
                     .frame(width: 20, height:80)
                     .font(.title)
+                    .accessibilityIdentifier("secondsOne")
 
                 Text("\(mainVM.seconds % 10)")
                     .fontWeight(.bold)
                     .frame(width: 20, height:80)
                     .font(.title)
+                    .accessibilityIdentifier("secondsTwo")
                 Spacer()
             }
             .overlay(
@@ -73,7 +86,7 @@ struct MainView: View {
             Spacer()
             
             HStack() {
-                Button(mainVM.mode == .stopped ? "Start" : mainVM.mode == .running ? "Pause" : "Continue") {
+                Button(mainVM.mode == .stopped ? "START" : mainVM.mode == .running ? "PAUSE" : "CONTINUE") {
                     mainVM.startPauseContinueTapped()
                 }
                 .frame(maxWidth:.infinity)
@@ -85,8 +98,13 @@ struct MainView: View {
                 )
                 .background(Color.black)
                 .foregroundColor(Color.white)
+                .accessibilityIdentifier("Start")
 
-                Button("Reset"){
+                Spacer()
+                Spacer()
+                Spacer()
+                
+                Button("RESET"){
                     mainVM.resetTappped()
                 }
                 .frame(maxWidth:.infinity)
@@ -98,6 +116,7 @@ struct MainView: View {
                 )
                 .background(Color.black)
                 .foregroundColor(Color.white)
+                .accessibilityIdentifier("Reset")
             }
             
             Spacer()

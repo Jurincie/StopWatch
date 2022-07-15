@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AA2D7312881016B001B791E /* Stopwatch_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2D7302881016B001B791E /* Stopwatch_UITests.swift */; };
 		7AB3AB6B2880A91E00DFC787 /* StopWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB3AB6A2880A91E00DFC787 /* StopWatchApp.swift */; };
 		7AB3AB6D2880A91E00DFC787 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB3AB6C2880A91E00DFC787 /* MainView.swift */; };
 		7AB3AB6F2880A91F00DFC787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AB3AB6E2880A91F00DFC787 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7AA2D7302881016B001B791E /* Stopwatch_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch_UITests.swift; sourceTree = "<group>"; };
 		7AB3AB672880A91E00DFC787 /* StopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB3AB6A2880A91E00DFC787 /* StopWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchApp.swift; sourceTree = "<group>"; };
 		7AB3AB6C2880A91E00DFC787 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			children = (
 				7AB3AB852880A91F00DFC787 /* StopWatchUITests.swift */,
 				7AB3AB872880A91F00DFC787 /* StopWatchUITestsLaunchTests.swift */,
+				7AA2D7302881016B001B791E /* Stopwatch_UITests.swift */,
 			);
 			path = StopWatchUITests;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			files = (
 				7AB3AB882880A91F00DFC787 /* StopWatchUITestsLaunchTests.swift in Sources */,
 				7AB3AB862880A91F00DFC787 /* StopWatchUITests.swift in Sources */,
+				7AA2D7312881016B001B791E /* Stopwatch_UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

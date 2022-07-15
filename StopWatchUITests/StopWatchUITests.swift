@@ -1,5 +1,5 @@
 //
-//  StopWatchUITests.swift
+//  StopWatch_UITests.swift
 //  StopWatchUITests
 //
 //  Created by Ron Jurincie on 7/14/22.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import StopWatch
 
-class StopWatchUITests: XCTestCase {
+class StopWatch_UITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
