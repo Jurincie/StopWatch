@@ -56,7 +56,7 @@ class StopWatchTests: XCTestCase {
         XCTAssertEqual(seconds, 0)
     }
     
-    func test_MainViewModel_setStaticText_SettingSecondsTo_13_964_shouldShow_03Hours_52Minutes_44Seconds () {
+    func test_MainViewModel_setStaticText_settingSecondsTo_13_964_shouldShow_03Hours_52Minutes_44Seconds () {
         // Given
         let mainVM = MainViewModel()
 
@@ -70,17 +70,31 @@ class StopWatchTests: XCTestCase {
         XCTAssertEqual(mainVM.seconds, 44)
     }
     
-    func test_MainViewModel_setStaticText_SettingSecondsTo_360_066_shouldShow_0Hours_1Minutes_6Seconds () {
+    func test_MainViewModel_setStaticText_settingSecondsTo_360_000_shouldShow_0Hours_0Minutes_0Seconds () {
         // Given
         let mainVM = MainViewModel()
 
         // When
-        mainVM.secondsPassed = 360_066
+        mainVM.secondsPassed = 360_000
         mainVM.setStaticText()
         
         // Then
         XCTAssertEqual(mainVM.hours, 0)
-        XCTAssertEqual(mainVM.minutes, 1)
-        XCTAssertEqual(mainVM.seconds, 6)
+        XCTAssertEqual(mainVM.minutes, 0)
+        XCTAssertEqual(mainVM.seconds, 0)
+    }
+    
+    func test_MainViewModel_setStaticText_settingSecondsTo_359_881_shouldShow_99Hours_58Minutes_01Seconds () {
+        // Given
+        let mainVM = MainViewModel()
+
+        // When
+        mainVM.secondsPassed = 359_881
+        mainVM.setStaticText()
+        
+        // Then
+        XCTAssertEqual(mainVM.hours, 99)
+        XCTAssertEqual(mainVM.minutes, 58)
+        XCTAssertEqual(mainVM.seconds, 01)
     }
 }
