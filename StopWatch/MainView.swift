@@ -75,6 +75,7 @@ struct MainView: View {
                     .accessibilityIdentifier("secondsTwo")
                 Spacer()
             }
+            .background(Color.yellow)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.black, lineWidth:10)
