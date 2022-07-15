@@ -57,6 +57,32 @@ class Stopwatch_UITests: XCTestCase {
         XCTAssertEqual(secondsTwo.label, "3")
     }
     
+    func test_StopWatchApp_MainView_startButton_shouldShowPAUSE () {
+        // Given
+        let startButton = app.buttons["Start"]
+        
+        // When
+        startButton.tap()
+        sleep(1)
+        
+        // Then
+        XCTAssertEqual(startButton.label, "PAUSE")
+    }
+    
+    func test_StopWatchApp_MainView_startButton_shouldShowSTART () {
+        // Given
+        let startButton = app.buttons["Start"]
+        let resetButton = app.buttons["Reset"]
+        
+        // When
+        startButton.tap()
+        resetButton.tap()
+        sleep(1)
+        
+        // Then
+        XCTAssertEqual(startButton.label, "START")
+    }
+    
     
     func test_StopWatchApp_MainView_secondsStaticText_shouldShow_00() {
         // Given
@@ -74,7 +100,6 @@ class Stopwatch_UITests: XCTestCase {
         let secondsTwo = app/*@START_MENU_TOKEN@*/.staticTexts["secondsTwo"]/*[[".staticTexts[\"8\"]",".staticTexts[\"secondsTwo\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         XCTAssertEqual(secondsOne.label, "0")
         XCTAssertEqual(secondsTwo.label, "0")
-        
     }
 }
 
