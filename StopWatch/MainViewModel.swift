@@ -54,14 +54,14 @@ final class MainViewModel : ObservableObject {
     
     func setStaticText() {
         
-        if self.secondsPassed == 360000 {
-            self.secondsPassed = 0
+        // the only reason this would ever be OVER 360000 is during UnitTesting
+        if self.secondsPassed >= 360000 {
+            self.secondsPassed %= 36000
         }
         
-        self.hours = self.secondsPassed / 3600
-        self.minutes = (self.secondsPassed - self.hours * 3600) / 60
-        self.hours %= 100
-        self.seconds = self.secondsPassed % 60
+        self.hours      = self.secondsPassed / 3600
+        self.minutes    = (self.secondsPassed - self.hours * 3600) / 60
+        self.seconds    = self.secondsPassed % 60
         self.mode = .running
     }
     
