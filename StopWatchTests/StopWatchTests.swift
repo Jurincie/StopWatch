@@ -78,5 +78,16 @@ class StopWatchTests: XCTestCase {
         XCTAssertEqual(hours, 0)
 
     }
+    
+    func test_MainViewModel_startPauseContinueTapped_runsTimer() {
+        // Given
+        let mainVM = MainViewModel()
+
+        // When
+        let timer = mainVM.timer
+
+        // Then
+        XCTAssertNotNil(timer)
+    }
 
 }
