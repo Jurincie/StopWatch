@@ -43,51 +43,19 @@ class StopWatchTests: XCTestCase {
         XCTAssertNotNil(mainVM)
     }
     
-    func test_MainViewModel_seconds_shouldInitializeToZero () {
-        // Given
-        let mainVM = MainViewModel()
-
-        // When
-        let seconds = mainVM.seconds
-
-        // Then
-        XCTAssertEqual(seconds, 0)
-
-    }
     
-    func test_MainViewModel_minutes_shouldInitializeToZero () {
-        // Given
-        let mainVM = MainViewModel()
-
-        // When
-        let minutes = mainVM.minutes
-
-        // Then
-        XCTAssertEqual(minutes, 0)
-
-    }
-    
-    func test_MainViewModel_hours_shouldInitializeToZero () {
+    func test_MainViewModel_hms_shouldInitializeToZero () {
         // Given
         let mainVM = MainViewModel()
 
         // When
         let hours = mainVM.hours
+        let minutes = mainVM.minutes
+        let seconds = mainVM.seconds
 
         // Then
         XCTAssertEqual(hours, 0)
-
+        XCTAssertEqual(minutes, 0)
+        XCTAssertEqual(seconds, 0)
     }
-    
-    func test_MainViewModel_startPauseContinueTapped_runsTimer() {
-        // Given
-        let mainVM = MainViewModel()
-
-        // When
-        let timer = mainVM.timer
-
-        // Then
-        XCTAssertNotNil(timer)
-    }
-
 }

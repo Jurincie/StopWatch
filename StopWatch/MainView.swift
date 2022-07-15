@@ -100,8 +100,12 @@ struct MainView: View {
                 .foregroundColor(Color.white)
             }
             
+            Spacer()
+            
         }
         .padding(20)
+        .background(RadialGradient(gradient: Gradient(colors: [.white, .blue]), center: .center, startRadius: 2, endRadius: 650))
+            .ignoresSafeArea()
     }
 }
 
