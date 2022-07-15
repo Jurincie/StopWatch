@@ -49,7 +49,6 @@ class Stopwatch_UITests: XCTestCase {
         sleep(13)
         startButton.tap()
                 
-                
         // Then
         let secondsOne = app.staticTexts["secondsOne"]
         let secondsTwo = app/*@START_MENU_TOKEN@*/.staticTexts["secondsTwo"]/*[[".staticTexts[\"8\"]",".staticTexts[\"secondsTwo\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
@@ -83,7 +82,6 @@ class Stopwatch_UITests: XCTestCase {
         XCTAssertEqual(startButton.label, "START")
     }
     
-    
     func test_StopWatchApp_MainView_secondsStaticText_shouldShow_00() {
         // Given
         let startButton = app.buttons["Start"]
@@ -93,7 +91,6 @@ class Stopwatch_UITests: XCTestCase {
         startButton.tap()
         sleep(5)
         resetButton.tap()
-                
                 
         // Then
         let secondsOne = app.staticTexts["secondsOne"]

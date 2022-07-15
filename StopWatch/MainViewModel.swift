@@ -52,6 +52,19 @@ final class MainViewModel : ObservableObject {
         mode = .stopped
     }
     
+    func setStaticText() {
+        
+        if self.secondsPassed == 360000 {
+            self.secondsPassed = 0
+        }
+        
+        self.hours = self.secondsPassed / 3600
+        self.minutes = (self.secondsPassed - self.hours * 3600) / 60
+        self.hours %= 100
+        self.seconds = self.secondsPassed % 60
+        self.mode = .running
+    }
+    
     
     func startPauseContinueTapped() {
         switch mode {
@@ -64,14 +77,7 @@ final class MainViewModel : ObservableObject {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 self.secondsPassed += 1
                 
-                if self.secondsPassed >= 360000 {
-                    self.secondsPassed = 0
-                }
-                
-                self.hours = self.secondsPassed / 3600
-                self.minutes = (self.secondsPassed - self.hours * 3600) / 60
-                self.seconds = self.secondsPassed % 60
-                self.mode = .running
+                self.setStaticText()
             }
         }
     }
