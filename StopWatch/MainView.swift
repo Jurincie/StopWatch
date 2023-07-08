@@ -16,116 +16,140 @@ import UIKit
 
 
 struct MainView: View {
-    @StateObject var mainVM = MainViewModel()
+    @StateObject var mainVM = MainViewModel.shared
     
     var body: some View {
         VStack() {
-            Spacer()
-            Text("Stopwatch App")
-                .font(.title)
-                .fontWeight(.bold)
+            Spacer(minLength:80)
+            Text("Stopwatch")
+                .foregroundColor(Color.white)
+                .font(.largeTitle)
+                .fontWeight(.heavy)
                 .frame(width:300, alignment: .center)
-            Spacer()
-            HStack() {
-                Spacer()
-                Text("\(mainVM.hours / 10)")
-                    .fontWeight(.bold)
-                    .frame(width: 20, height:80)
-                    .font(.title)
-                    .accessibilityIdentifier("hoursOne")
-                
-                Text("\(mainVM.hours % 10)")
-                    .fontWeight(.bold)
-                    .frame(width: 20, height:80)
-                    .font(.title)
-                    .accessibilityIdentifier("hoursTwo")
-                
-                Text(":")
-                    .fontWeight(.bold)
-                    .frame(width: 20, height:80)
-                    .font(.title)
-
-                Text("\(mainVM.minutes / 10)")
-                    .fontWeight(.bold)
-                   .frame(width: 20, height:80)
-                   .font(.title)
-                   .accessibilityIdentifier("minutesOne")
-
-                Text("\(mainVM.minutes % 10)")
-                    .fontWeight(.bold)
-                    .frame(width: 20, height:80)
-                    .font(.title)
-                    .accessibilityIdentifier("minutesTwo")
-                    
-                Text(":")
-                    .fontWeight(.bold)
-                    .frame(width: 20, height:80)
-                    .font(.title)
-
-                Text("\(mainVM.seconds / 10)")
-                    .fontWeight(.bold)
-                    .frame(width: 20, height:80)
-                    .font(.title)
-                    .accessibilityIdentifier("secondsOne")
-
-                Text("\(mainVM.seconds % 10)")
-                    .fontWeight(.bold)
-                    .frame(width: 20, height:80)
-                    .font(.title)
-                    .accessibilityIdentifier("secondsTwo")
-                Spacer()
-            }
-            .background(Color.yellow)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.black, lineWidth:10)
-            )
-
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            
-            HStack() {
-                Button(mainVM.mode == .stopped ? "START" : mainVM.mode == .running ? "PAUSE" : "CONTINUE") {
-                    mainVM.startPauseContinueTapped()
-                }
-                .frame(maxWidth:.infinity)
-                .font(.headline)
+            HHmmssView()
+                .frame(maxWidth: 300)
                 .padding(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.white, lineWidth:10)
-                )
-                .background(Color.black)
-                .foregroundColor(Color.white)
-                .accessibilityIdentifier("Start")
-
-                Spacer()
-                Spacer()
-                Spacer()
-                
-                Button("RESET"){
-                    mainVM.resetTappped()
-                }
-                .frame(maxWidth:.infinity)
-                .font(.headline)
-                .padding(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.white, lineWidth:10)
-                )
-                .background(Color.black)
-                .foregroundColor(Color.white)
-                .accessibilityIdentifier("Reset")
-            }
-            
             Spacer()
+            ControlsView()
+                .padding(20)
+        }
+        .background(LinearGradient(colors: [.blue, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
+                .ignoresSafeArea()
+    }
+}
+
+struct HHmmssView: View {
+    @StateObject var mainVM = MainViewModel.shared
+    
+    var body: some View {
+        HStack() {
+            Spacer()
+            Text("\(mainVM.hours / 10)")
+                .fontWeight(.bold)
+                .frame(width: 20, height:80)
+                .font(.largeTitle)
+                .accessibilityIdentifier("hoursOne")
             
+            Text("\(mainVM.hours % 10)")
+                .fontWeight(.bold)
+                .frame(width: 20, height:80)
+                .font(.largeTitle)
+                .accessibilityIdentifier("hoursTwo")
+            
+            Text(":")
+                .fontWeight(.heavy)
+                .frame(width: 20, height:80)
+                .font(.largeTitle)
+
+            Text("\(mainVM.minutes / 10)")
+                .fontWeight(.bold)
+               .frame(width: 20, height:80)
+               .font(.largeTitle)
+               .accessibilityIdentifier("minutesOne")
+
+            Text("\(mainVM.minutes % 10)")
+                .fontWeight(.bold)
+                .frame(width: 20, height:80)
+                .font(.largeTitle)
+                .accessibilityIdentifier("minutesTwo")
+                
+            Text(":")
+                .fontWeight(.heavy)
+                .frame(width: 20, height:80)
+                .font(.largeTitle)
+
+            Text("\(mainVM.seconds / 10)")
+                .fontWeight(.bold)
+                .frame(width: 20, height:80)
+                .font(.largeTitle)
+                .accessibilityIdentifier("secondsOne")
+
+            Text("\(mainVM.seconds % 10)")
+                .fontWeight(.bold)
+                .frame(width: 20, height:80)
+                .font(.largeTitle)
+                .accessibilityIdentifier("secondsTwo")
+            Spacer()
+        }
+        .background(Color.yellow)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.black, lineWidth:10)
+        )
+    }
+}
+
+struct ResetButton : View {
+    @StateObject var mainVM = MainViewModel.shared
+    
+    var body: some View {
+        Button("RESET"){
+            mainVM.resetTappped()
+        }
+        .padding()
+        .font(.title)
+        .background(Color.red)
+        .foregroundColor(Color.white)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.white, lineWidth:5))
+    }
+}
+
+struct StartButton: View {
+    @StateObject var mainVM = MainViewModel.shared
+    
+    var body: some View {
+        Button(
+            mainVM.mode == .stopped ? "START" : mainVM.mode == .running ? "PAUSE" : "CONTINUE") {
+                mainVM.startPauseContinueTapped()
+        }
+        .padding()
+        .font(.title)
+        .background(mainVM.mode == .stopped ? Color.green : mainVM.mode == .running ? Color.secondary : Color.green)
+        .foregroundColor(Color.white)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.white, lineWidth:5)
+        )
+    }
+}
+struct ControlsView: View {
+    @StateObject var mainVM = MainViewModel.shared
+
+    var body: some View {
+        HStack() {
+            Spacer()
+            StartButton()
+            Spacer()
+            Spacer()
+            Spacer()
+            ResetButton()
+            Spacer()
         }
         .padding(20)
-        .background(RadialGradient(gradient: Gradient(colors: [.white, .blue]), center: .center, startRadius: 2, endRadius: 650))
-            .ignoresSafeArea()
+        
+        Spacer()
     }
 }
 

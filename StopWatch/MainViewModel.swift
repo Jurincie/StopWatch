@@ -33,6 +33,8 @@ final class MainViewModel : ObservableObject {
     var secondsPassed: Int
     var timer = Timer()
     
+    static let shared = MainViewModel()
+    
     init() {
         self.secondsPassed = 0
         
